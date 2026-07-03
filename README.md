@@ -1,3 +1,5 @@
+> 🏠 **Développé sur :** [GitLab](https://gitlab.com/schroeder-sys/pantheon-souverainete) | 🪞 **Miroir automatisé sur :** [GitHub](https://github.com/schroeder-sys/pantheon-souverainete)
+
 # 🏛️ Le Panthéon de la Souveraineté
 
 > **Une infrastructure cloud 100% souveraine, redondante et sécurisée, conçue pour s'affranchir totalement des GAFAM.**
