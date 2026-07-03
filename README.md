@@ -1,93 +1,204 @@
-# Le Panthéon de la Souveraineté
+# 🏛️ Le Panthéon de la Souveraineté
 
+> **Une infrastructure cloud 100% souveraine, redondante et sécurisée, conçue pour s'affranchir totalement des GAFAM.**
+> *Version 1.0 : Architecture fondée sur le chiffrement interne (DoT/DoH) et la redondance multi-datacenters.*
 
+[![Version](https://img.shields.io/badge/Version-1.0%20Official-blue)](#)
+[![Status](https://img.shields.io/badge/Status-En%20Construction-orange)](#)
+[![License](https://img.shields.io/badge/License-CC%20BY--SA%204.0-green)](#)
+[![Stack](https://img.shields.io/badge/Stack-100%25%20Open%20Source-orange)](#)
+[![Privacy](https://img.shields.io/badge/Privacy-DoT%2FDoH%20Internal-red)](#)
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## ⚠️ Avertissements Importants & Méthodologie
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### 1. Contexte du Projet (Démarrage à Froid)
+Ce projet démarre officiellement avec cette version 1.0. Il intègre dès la conception les retours d'expérience d'une phase préparatoire privée, marquée par :
+*   **Une reconstruction totale (Rebuild) :** Pour garantir un ordre de déploiement logique et éviter les dettes techniques (ex: commencer par le Proxy avant le DNS pour faciliter les reconfigurations).
+*   **Un durcissement sécurité natif :** Implémentation systématique du chiffrement DNS (DoT/DoH) même en réseau privé.
+*   **Une hygiène numérique stricte :** Utilisation exclusive de logiciels libres audités et abandon de tout outil client (SSH, etc.) dont la politique de confidentialité est jugée insuffisante.
+*   **Une base saine :** Déploiement sur **Debian** (pur) avec régénération complète des clés de sécurité.
 
-## Add your files
+### 2. Profil de l'Auteur & Transparence
+Je ne suis **pas un professionnel de l'IT** diplômé. Ce projet est le fruit d'une passion pour l'administration système, construite en auto-formation ces 5 dernières années.
+*   **Risque d'erreur :** Bien que je m'appuie scrupuleusement sur les documentations officielles, je ne suis pas exempt d'erreurs de compréhension ou d'interprétation.
+*   **Assistance par IA (EURIA) :** Ce projet est réalisé avec l'assistance d'**EURIA** (IA d'Infomaniak) pour la rédaction et la structuration. Chaque commande est vérifiée humainement.
+    *   *Futur :* Le projet **PROMÉTHÉE** (IA locale) remplacera EURIA à terme pour une autonomie totale.
+*   **Posture Éthique :** Abandon immédiat de tout outil dont la politique de confidentialité est douteuse.
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### 3. État du Projet & Mise en Garde
+Ce projet est en **phase de construction active**.
+*   **Documentation :** Les guides sont rédigés au fur et à mesure du déploiement réel.
+*   **Statut des services :**
+    *   **VULCAIN :** En cours de déploiement (Priorité n°1).
+    *   **AEGIS :** En attente de déploiement (Nouvelle archi DNS).
+    *   **Backups (ARK) :** Architecture multi-DC (Infomaniak + Hetzner) en conception.
+*   🛑 **AVERTISSEMENT :** Ne déployez rien en production sans avoir validé chaque étape dans un environnement de test. Le non-respect des phases de test se fait à **vos risques et périls**.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/schroeder-sys/pantheon-souverainete.git
-git branch -M main
-git push -uf origin main
-```
+### 4. Limitation de Responsabilité
+Projet éducatif et personnel. L'auteur ne garantit pas l'absence de bugs. La sécurité de vos données et la stratégie de backup (ARK) sont de votre **entière responsabilité**.
 
-## Integrate with your tools
+---
 
-* [Set up project integrations](https://gitlab.com/schroeder-sys/pantheon-souverainete/-/settings/integrations)
+## 📜 Philosophie & Objectifs
 
-## Collaborate with your team
+Démontrer qu'il est possible de construire une infrastructure **redondante, chiffrée de bout en bout et indépendante**, sans dépendre des GAFAM.
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+**Les 3 Piliers Fondamentaux :**
+1.  **Souveraineté & Redondance :** Hébergement principal en Suisse (Infomaniak) avec réplication des backups sur un second Datacenter indépendant (Hetzner).
+2.  **Security by Design (Chiffrement Interne) :**
+    *   Aucun flux DNS en clair, même en réseau privé.
+    *   Utilisation systématique de **DoT (DNS-over-TLS)** pour les communications inter-instances.
+    *   Utilisation de **DoH/DoQ (DNS-over-HTTPS/QUIC)** pour les clients VPN.
+3.  **Ordre Logique de Déploiement :** Respect strict de la chaîne de construction : **Porte d'Entrée (VULCAIN)** → Socle DNS (AEGIS) → Services Métiers.
 
-## Test and Deploy
+---
 
-Use the built-in continuous integration in GitLab.
+## 🤝 Les Tiers de Confiance Assumés
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+La souveraineté n'est pas l'isolement, c'est le choix maîtrisé de ses dépendances.
 
-***
+| Tiers | Rôle | Pourquoi ce choix ? | Souveraineté |
+|:---|:---|:---|:---|
+| **Infomaniak** 🇨🇭 | Hébergeur Principal | Données en Suisse (hors Cloud Act/UE). DPA signé. Écologie réelle. | ✅ **Totale** |
+| **Hetzner** 🇩🇪 | Hébergeur Secondaire (Backup) | Redondance géographique (DC distinct). Stockage objet froid pour ARK. | ✅ **Européen** |
+| **CrowdSec** 🇫🇷 | Intelligence de Menaces | Partage communautaire d'IP malveillantes. Protection temps réel. | ✅ **Européenne** |
+| **Let's Encrypt** 🌍 | Certificats SSL | Standard mondial pour le chiffrement TLS 1.3. | ✅ **Standard Ouvert** |
+| **Debian** 🌍 | Système d'exploitation | Base universelle, stable, communautaire et auditée. | ✅ **Standard Ouvert** |
+| **Docker** 🇺🇸 | Conteneurisation | Standard de facto. Utilisation avec DPA public et sans télémétrie active. | ✅ **Standard** |
 
-# Editing this README
+> **Règle d'Or :** Tout flux sortant non essentiel (télémétrie, mises à jour auto non contrôlées) est **strictement bloqué** par firewall.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+---
 
-## Suggestions for a good README
+## 🗺️ Architecture du Projet (Les 12 Divinités)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+| Ordre | Divinité | Rôle | Stack Technologique Validée | Origine | Statut |
+|:---:|:---|:---|:---|:---:|:---:|
+| **01** | **VULCAIN** 🔥 | Reverse Proxy & WAF | Traefik + CrowdSec + ALTCHA (PoW) | 🇫🇷/🇦🇹 | 🚧 **En Cours** |
+| **02** | **AEGIS** 🛡️ | **DNS Souverain & VPN** | WireGuard + AdGuard (DoH/DoQ) + Unbound (DoT + DNSSEC) | 🇺🇸/🇨🇾/🇳🇱 | ⏳ **À Venir** |
+| **03** | **ARGUS** 👁️ | Monitoring | Grafana + Prometheus + Node Exporter | 🇸🇪/🇺🇸 | ⏳ **À Venir** |
+| **04** | **JANUS** 🚪 | Identité & SSO | Bitwarden (Officiel) + Authentik (SSO)* | 🇺🇸/🇺🇸* | 📋 *Audit à faire* |
+| **05** | **ARK** 🗄️ | Backups Multi-DC | Restic + Swift (Infomaniak) + S3 (Hetzner) | 🇩🇪/🇨🇭/🇩🇪 | ✅ **Validé** |
+| **06** | **HERMÈS** 📧 | Email | *(En attente)* | - | ⚪ **Vierge** |
+| **07** | **MIDAS** 💰 | Finances | *(En attente)* | - | ⚪ **Vierge** |
+| **08** | **DIANE** 🏹 | Cartes & NTP | Valhalla + Photon (rayon < 500Km) | 🇩🇪 | ✅ **Validé** |
+| **09** | **VERITAS** 🔍 | Recherche | SearXNG | 🇫🇷 | ✅ **Validé** |
+| **10** | **HÉPHAÏSTOS** 🔨 | Forge Git | Forgejo (Fork communautaire) | 🌍 | ✅ **Validé** |
+| **11** | **MNÉMOSYNE** ☁️ | Cloud & Fichiers | Nextcloud Hub (Éditeur natif) | 🇩🇪 | ✅ **Validé** |
+| **12** | **PROMÉTHÉE** 🔥 | IA Locale | Ollama + Mixtral (Mistral AI) | 🇫🇷 | ✅ **Validé** |
 
-## Name
-Choose a self-explaining name for your project.
+*\*Note sur JANUS : Authentik (US) est en cours d'audit pour vérifier l'absence de télémétrie. Plan B : Authelia.*
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+> ### 🖼️ Schéma d'Architecture (À venir)
+> *Un schéma détaillé illustrant les flux chiffrés (DoT/DoH), la topologie multi-DC (CH/DE/FI) et l'interconnexion des instances sera ajouté ici dès la finalisation du déploiement de VULCAIN. La priorité est donnée à l'exactitude technique plutôt qu'à l'illustration prématurée.*
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+**🔍 Focus sur la stratégie de déploiement (VULCAIN First) :**
+Contrairement à une intuition première, **VULCAIN** est déployé avant **AEGIS**.
+*   **Pourquoi ?** Il est techniquement plus simple et moins risqué de modifier la configuration DNS des instances (quelques lignes) que de devoir recréer des conteneurs Proxy, régénérer des certificats SSL et reconfigurer les routages si le DNS changeait après coup.
+*   **Résultat :** VULCAIN fournit une plateforme stable (HTTPS, WAF) dès le jour 1. AEGIS vient ensuite se "brancher" dessus comme un service sécurisé parmi d'autres.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+---
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### 🧩 Philosophie "Lego" : Modularité & Ordre
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Imaginez ce projet comme un set **Lego Star Wars** complexe :
+*   🚀 **Modularité :** Chaque brique (Divinité) est fonctionnelle seule.
+*   🏗️ **Ordre de construction :** L'ordre est critique pour éviter de devoir démonter/remonter.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+**Le principe clé (v1.0) :**
+1.  **Porte (VULCAIN) :** Reverse Proxy et WAF. On construit la route et la sécurité périmétrique en premier.
+2.  **Socle (AEGIS) :** DNS et Réseau sécurisés. On connecte le résolveur DNS chiffré une fois la route prête.
+3.  **Services (Les autres) :** Déployés et connectés au fur et à mesure.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+> **Conseil :** Ne brûlez pas les étapes. Cette version 1.0 impose cet ordre logique pour garantir la stabilité et vous éviter de devoir recommencer (comme je l'ai fait en phase privée 😉).
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+---
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## 🛡️ Modèle de Sécurité
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Cette version marque un saut qualitatif en matière de sécurité :
+*   **Chiffrement Interne Systématique :** Adoption de DoT/DoH pour *tous* les flux DNS, éliminant le risque d'écoute même sur le réseau privé de l'hébergeur.
+*   **Hygiène Numérique Stricte :** Abandon immédiat de tout outil client (SSH, gestion) ne respectant pas une charte de confidentialité stricte. Rotation des clés SSH lors du déploiement initial.
+*   **Redondance des Backups (ARK) :** Stratégie 3-2-1 avec copie externe chez un second hébergeur européen (Hetzner) pour parer à la perte totale d'un datacenter.
+*   **Zero-Trust :** Isolation stricte des instances et authentification forte via JANUS.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+---
 
-## License
-For open source projects, say how it is licensed.
+### 🚀 Par où commencer ? (Quick Start)
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Le projet étant en construction, voici comment vous pouvez déjà vous impliquer :
+
+1.  **Lisez ce README** pour comprendre l'architecture v1.0 et la logique de déploiement.
+2.  **Surveillez les publications "Hors-Séries" :**
+    *   📄 **Hors-Série #1 : La Gold Image Debian** (Guide de durcissement de l'OS de base).
+    *   🔐 **Hors-Série #2 : Le Gold Security Group** (Modèle de règles firewall optimisées).
+    *   *Publication prévue sous 48h. Ces documents sont les prérequis indispensables avant tout déploiement.*
+3.  **Attendez la publication du guide VULCAIN** dans le dossier `/docs/`.
+4.  **Ne déployez rien** en production tant que les guides ne sont pas marqués "PROD".
+
+> 💡 **Conseil :** Starrez (⭐) ce dépôt pour être notifié des mises à jour et de la publication des Hors-Séries dans les prochains jours.
+
+---
+
+## 📚 Documentation & Guides de Déploiement
+
+Ce dépôt propose une **méthodologie durable**. Pas de scripts "magiques", mais des guides basés sur la doc officielle.
+Chaque guide inclura :
+1.  Prérequis & Dimensionnement.
+2.  Architecture Réseau (Flux chiffrés DoT/DoH).
+3.  Procédure d'Installation & Hardening.
+4.  Maintenance & Backup (ARK).
+
+---
+
+## 💰 Modèle Économique & Hébergement
+
+La v1.0 intègre un modèle de redondance professionnelle.
+
+*   **Hébergeur Principal :** Infomaniak (🇨🇭 Suisse). Pour les instances de production (Souveraineté, DPA, Écologie).
+*   **Hébergeur Secondaire (Stockage Backup) :** Hetzner (🇩🇪 Allemagne & 🇫🇮 Finlande). Uniquement pour le stockage froid des backups (ARK), assurant une redondance géographique sur **3 Datacenters distincts** (1x Suisse, 1x Allemagne, 1x Finlande).
+*   **Sécurité des Données (ARK) :** Toutes les sauvegardes sont **chiffrées côté client (AES-256)** via Restic *avant* leur envoi. Ni Infomaniak ni Hetzner ne peuvent accéder au contenu de vos données.
+*   **Coût Cible :** 200€~300€/mois.
+    *   Ce budget couvre l'ensemble des 12 services en production, avec une allocation de ressources confortable et la réplication des sauvegardes sur ces trois datacenters distincts.
+    *   *Note : Ce coût est une estimation "Production Redondante". Une version "Solo" sans redondance externe coûterait environ le tiers.*
+*   **Soutien au projet :** Si ce projet vous est utile, vous pouvez soutenir son développement via les liens d'affiliation ci-dessous (sans surcoût pour vous) :
+    *   ☁️ **[Infomaniak Public Cloud](https://www.infomaniak.com/fr/hebergement/public-cloud?utm_term=68ceeeb369ce1)** – Pour le socle principal.
+    *   🖥️ **[Infomaniak VPS](https://www.infomaniak.com/fr/hebergement/vps-cloud?utm_term=68ceeeb369ce1)** – Pour les instances légères.
+    *   📧 **[kSuite (incluant kDrive & Euria)](https://www.infomaniak.com/fr/ksuite?utm_term=68ceeeb369ce1)** – Pour la suite collaborative.
+    *   ℹ️ **[Site Officiel Infomaniak (Lien non affilié)](https://infomaniak.com/fr)**
+
+> *Un clin d'œil sincère à **Infomaniak** : ce projet n'aurait jamais vu le jour sans un hébergeur capable de cocher simultanément les cases "Souveraineté Suisse", "Écologie réelle" et "Prix accessibles". Merci de rendre la liberté numérique économiquement viable.*
+
+---
+
+## 🚀 Roadmap (v1.0 - Construction)
+
+- [x] **Phase 0 : Conception & Outils** – Mise en place de l'environnement de rédaction (Debian, VSCodium) et finalisation des specs VULCAIN.
+- [ ] **Phase 1 : Porte d'Entrée (VULCAIN)** – Déploiement du Proxy et du WAF. *(Priorité Actuelle)*
+- [ ] **Phase 2 : Socle DNS (AEGIS)** – Déploiement de l'instance avec DoT/DoH natif et connexion à VULCAIN.
+- [ ] **Phase 3 : Observabilité (ARGUS)** – Mise en place du monitoring centralisé.
+- [ ] **Phase 4 : Identité & Données (JANUS, MNÉMOSYNE, ARK)** – Déploiement du SSO, du Cloud et configuration de la redondance des backups (Infomaniak + Hetzner).
+- [ ] **Phase 5 : Services Utilisateurs** – VERITAS, DIANE, HÉPHAÏSTOS.
+- [ ] **Phase 6 : Avancé** – HERMÈS, MIDAS, PROMÉTHÉE.
+
+---
+
+## 🤝 Contribuer & Licence
+
+Projet éducatif en construction ouverte.
+
+**Comment contribuer ?**
+*   🐛 **Signaler un bug** ou une erreur dans un guide (ouvrez une "Issue").
+*   🌍 **Traduire** un guide dans votre langue maternelle.
+*   📝 **Partager** votre retour d'expérience (REX) après avoir déployé une brique.
+*   💡 **Proposer** une optimisation de sécurité ou de performance.
+
+**Licences :**
+*   **Contenu (Guides) :** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) - Libre partage et adaptation avec citation.
+*   **Logiciels cités :** Chaque divinité respecte la licence de son logiciel constitutif (majoritairement MIT, Apache 2.0, AGPL, GPL).
+
+---
+
+> *"La souveraineté numérique n'est pas un produit que l'on achète, c'est une architecture que l'on bâtit. C'est le refus de la dépendance et la conquête quotidienne de sa propre liberté."*
