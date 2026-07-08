@@ -128,22 +128,6 @@ Cette version marque un saut qualitatif en matière de sécurité :
 
 ---
 
-### 🚀 Par où commencer ? (Quick Start)
-
-Le projet étant en construction, voici comment vous pouvez déjà vous impliquer :
-
-1.  **Lisez ce README** pour comprendre l'architecture v1.0 et la logique de déploiement.
-2.  **Surveillez les publications "Hors-Séries" :**
-    *   📄 **Hors-Série #1 : La Gold Image Debian** (Guide de durcissement de l'OS de base).
-    *   🔐 **Hors-Série #2 : Le Gold Security Group** (Modèle de règles firewall optimisées).
-    *   *Publication prévue sous 48h. Ces documents sont les prérequis indispensables avant tout déploiement.*
-3.  **Attendez la publication du guide VULCAIN** dans le dossier `/docs/`.
-4.  **Ne déployez rien** en production tant que les guides ne sont pas marqués "PROD".
-
-> 💡 **Conseil :** Starrez (⭐) ce dépôt pour être notifié des mises à jour et de la publication des Hors-Séries dans les prochains jours.
-
----
-
 ## 📚 Documentation & Guides de Déploiement
 
 Ce dépôt propose une **méthodologie durable**. Pas de scripts "magiques", mais des guides basés sur la doc officielle.
@@ -152,6 +136,32 @@ Chaque guide inclura :
 2.  Architecture Réseau (Flux chiffrés DoT/DoH).
 3.  Procédure d'Installation & Hardening.
 4.  Maintenance & Backup (ARK).
+
+### 🗂️ Structure de la Documentation
+
+La documentation est organisée de manière modulaire dans le dossier [`docs/`](docs/) :
+
+*   📂 **[00_HORS-SERIES](docs/00_HORS-SERIES/)** : Guides transverses indispensables (Firewall, Image Système, Sécurité).
+    *   ✅ **Disponible :** [HS-01 : Le Firewall Périmétrique "Panthéon-Gold"](docs/00_HORS-SERIES/hs-01-security-group.md)
+    *   ⏳ *À venir :* HS-02 : Création de l'Image Gold Debian.
+*   📂 **[01_DIVINITES](docs/01_DIVINITES/)** : Guides de déploiement spécifiques à chaque service (Vulcain, Aegis, etc.).
+*   📂 **[99_COMMUN](docs/99_COMMUN/)** : Ressources partagées, schémas d'architecture et snippets de configuration.
+
+---
+
+### 🚀 Par où commencer ? (Quick Start)
+
+Le projet étant en construction, voici comment vous pouvez déjà vous impliquer :
+
+1.  **Lisez ce README** pour comprendre l'architecture v1.0 et la logique de déploiement.
+2.  **Étudiez le premier guide officiel :**
+    *   📄 **[Hors-Série #1 : Le Firewall Périmétrique](docs/00_HORS-SERIES/hs-01-security-group.md)** (Déjà en ligne). C'est le prérequis absolu avant toute création d'instance.
+3.  **Surveillez les prochaines publications :**
+    *   🔐 **Hors-Série #2 : La Gold Image Debian** (Guide de durcissement de l'OS de base).
+    *   🔥 **Guide VULCAIN** (Déploiement du Proxy et WAF).
+4.  **Ne déployez rien** en production tant que les guides ne sont pas marqués "PROD".
+
+> 💡 **Conseil :** Starrez (⭐) ce dépôt pour être notifié des mises à jour et de la publication des Hors-Séries dans les prochains jours.
 
 ---
 
@@ -178,6 +188,7 @@ La v1.0 intègre un modèle de redondance professionnelle.
 ## 🚀 Roadmap (v1.0 - Construction)
 
 - [x] **Phase 0 : Conception & Outils** – Mise en place de l'environnement de rédaction (Debian, VSCodium) et finalisation des specs VULCAIN.
+- [x] **Publication Hors-Série #1** – Guide du Firewall Périmétrique (Gold Security Group).
 - [ ] **Phase 1 : Porte d'Entrée (VULCAIN)** – Déploiement du Proxy et du WAF. *(Priorité Actuelle)*
 - [ ] **Phase 2 : Socle DNS (AEGIS)** – Déploiement de l'instance avec DoT/DoH natif et connexion à VULCAIN.
 - [ ] **Phase 3 : Observabilité (ARGUS)** – Mise en place du monitoring centralisé.
