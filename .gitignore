@@ -1,28 +1,24 @@
-# --- SPÉCIFIQUE À VOTRE ENVIRONNEMENT ---
-
-# KDE / Plasma (métadonnées de dossier)
+# --- ENVIRONNEMENT & OS ---
 .directory
+.DS_Store
+Thumbs.db
 
-# VSCodium (Version Flatpak)
-# Les Flatpaks isolent souvent les configs, mais au cas où vous éditez depuis le home
+# --- ÉDITEURS & IDE ---
 org.vscodium.VSCodium/
+.vscode/
+*.swp
+*~
 
-# Tabby (AppImage)
-# Tabby stocke souvent sa config dans ~/.config/tabby ou localement selon le lancement
-# On ignore les fichiers de session ou configs locales si jamais ils traînent dans le repo
+# --- TABBY (AppImage) ---
 tabby_config.json
 tabby-shell-state.json
 
-# --- GÉNÉRIQUE DOCUMENTATION (LIGHT) ---
-.DS_Store
-Thumbs.db
-*.swp
-*~
-*.tmp
-*.bak
+# --- BROUILLONS & PRIVÉ ---
 drafts/
 notes_personnelles.md
 
-# prévisualisations locales
+# --- TEMPORAIRES & EXPORTS ---
+*.tmp
+*.bak
 *.pdf
 *.html
