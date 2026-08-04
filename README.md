@@ -35,45 +35,43 @@ Je ne suis **pas un professionnel de l'IT** diplômé. Ce projet est le fruit d'
 Ce projet est en **phase de construction active (v1.1)**.
 *   **Documentation :** Les guides sont rédigés au fur et à mesure du déploiement réel.
 *   **Statut des services :**
-    *   **Réseau Privé :** Guide HS-02 en finalisation urgente (oubli de la v1.0 réparé !).
+    *   **HS-01 (Réseau Privé) :** 🚧 **FINALISATION (J-4)**. Le réseau est déjà opérationnel en production, le guide écrit arrive sous 96h.
+    *   **HS-02 (Firewall) :** ✅ **VALIDÉ**. Matrice de règles v1.1 corrigée (DNS fermé en entrée, ICMP sortant bloqué).
+    *   **HS-03 (Image Gold) :** ✅ **VALIDÉ**. Prêt pour la création du snapshot de référence.
     *   **VULCAIN :** En cours de déploiement (Priorité n°1). Sera configuré pour utiliser le DoT vers AEGIS.
     *   **AEGIS :** Architecture DoT/DoH définie, prête au déploiement.
     *   **Backups (ARK) :** Architecture multi-DC (Suisse, Allemagne, Finlande) validée dans les specs, en cours de déploiement.
-*   🛑 **AVERTISSEMENT :** Ne déployez rien en production sans avoir validé chaque étape dans un environnement de test. Le non-respect des phases de test se fait à **vos risques et périls**.
+*   🛑 **AVERTISSEMENT :** Ne déployez rien en production sans avoir validé chaque étape dans un environnement de test.
 
 ### 4. Limitation de Responsabilité
-Projet éducatif et personnel. L'auteur ne garantit pas l'absence de bugs. La sécurité de vos données et la stratégie de backup (ARK) sont de votre **entière responsabilité**.
+Projet éducatif et personnel. La sécurité de vos données et la stratégie de backup sont de votre **entière responsabilité**.
 
 ---
 
 ## 📜 Philosophie & Objectifs
 
-Démontrer qu'il est possible de construire une infrastructure **redondante, chiffrée de bout en bout et indépendante**, sans dépendre des GAFAM.
+Démontrer qu'il est possible de construire une infrastructure **redondante, chiffrée de bout en bout et indépendante**.
 
 **Les 3 Piliers Fondamentaux (v1.1) :**
-1.  **Souveraineté & Redondance :** Hébergement principal en **Suisse** (Infomaniak) avec réplication des backups en **Allemagne** et **Finlande** (Hetzner). Vos données survivent à la perte d'un pays entier.
+1.  **Souveraineté & Redondance :** Hébergement principal en **Suisse** (Infomaniak) avec réplication des backups en **Allemagne** et **Finlande** (Hetzner).
 2.  **Security by Design (Chiffrement des Serveurs) :**
-    *   **Actuel (v1.1) :** **Les serveurs eux-mêmes** chiffrent leurs requêtes DNS via le protocole **DoT (DNS-over-TLS)** vers AEGIS. Que ce soit pour une mise à jour (`apt`) ou pour joindre un service interne, aucune requête ne sort en clair du serveur.
+    *   **Actuel (v1.1) :** **Les serveurs eux-mêmes** chiffrent leurs requêtes DNS via le protocole **DoT (DNS-over-TLS)** vers AEGIS.
     *   **Règle de Flux :** Tout flux sortant non essentiel est strictement bloqué par le firewall **OU** filtré au niveau DNS.
-    *   **Futur (Réflexion mTLS) :** Implémentation potentielle d'une authentification mutuelle par certificats entre les services (Zero-Trust avancé).
+    *   **Futur (Réflexion mTLS) :** Implémentation potentielle d'une authentification mutuelle par certificats.
 3.  **Ordre Logique de Déploiement :** **Réseau Privé** → **Porte d'Entrée (VULCAIN)** → Socle DNS (AEGIS) → Services Métiers.
 
 ---
 
 ## 🤝 Les Tiers de Confiance Assumés
 
-La souveraineté n'est pas l'isolement, c'est le choix maîtrisé de ses dépendances.
-
 | Tiers | Rôle | Pourquoi ce choix ? | Souveraineté |
 |:---|:---|:---|:---|
-| **Infomaniak** 🇨🇭 | Hébergeur Principal | Données en Suisse (hors Cloud Act/UE). DPA signé. Écologie réelle. | ✅ **Totale** |
-| **Hetzner** 🇩🇪 🇫🇮 | Hébergeur Secondaire (Backup) | Redondance géographique stricte : Stockage froid répliqué sur **deux** DC distincts (Allemagne & Finlande). | ✅ **Européen** |
-| **CrowdSec** 🇫🇷 | Intelligence de Menaces | Partage communautaire d'IP malveillantes. Protection temps réel. | ✅ **Européenne** |
-| **Certum** 🇵🇱 | Certificats SSL & S/MIME | Autorité de certification européenne, conforme **eIDAS**. Remplace Let's Encrypt pour une confiance souveraine. | ✅ **Européenne** |
-| **Debian** 🌍 | Système d'exploitation | Base universelle, stable, communautaire et auditée. | ✅ **Standard Ouvert** |
-| **Docker** 🇺🇸 | Conteneurisation | Standard de facto. Utilisation avec DPA public et sans télémétrie active. | ✅ **Standard** |
-
-> **Règle d'Or :** Tout flux sortant non essentiel (télémétrie, mises à jour auto non contrôlées) est **strictement bloqué** par firewall.
+| **Infomaniak** 🇨🇭 | Hébergeur Principal | Données en Suisse. DPA signé. Écologie réelle. | ✅ **Totale** |
+| **Hetzner** 🇩🇪 🇫🇮 | Hébergeur Secondaire (Backup) | Redondance stricte : Stockage froid répliqué sur **deux** DC (Allemagne & Finlande). | ✅ **Européen** |
+| **CrowdSec** 🇫🇷 | Intelligence de Menaces | Partage communautaire d'IP malveillantes. | ✅ **Européenne** |
+| **Certum** 🇵🇱 | Certificats SSL & S/MIME | Autorité européenne, conforme **eIDAS**. Remplace Let's Encrypt. | ✅ **Européenne** |
+| **Debian** 🌍 | Système d'exploitation | Base universelle, stable, communautaire. | ✅ **Standard Ouvert** |
+| **Docker** 🇺🇸 | Conteneurisation | Standard de facto. Utilisation sans télémétrie active. | ✅ **Standard** |
 
 ---
 
@@ -94,133 +92,102 @@ La souveraineté n'est pas l'isolement, c'est le choix maîtrisé de ses dépend
 | **11** | **MNÉMOSYNE** ☁️ | Cloud & Fichiers | Nextcloud Hub | 🇩🇪 | ✅ **Validé** |
 | **12** | **PROMÉTHÉE** 🔥 | IA Locale | Ollama + Mixtral | 🇫🇷 | ✅ **Validé** |
 
-*\*Note sur JANUS : Authentik (US) est en cours d'audit pour vérifier l'absence de télémétrie. Plan B : Authelia.*
-
-> ### 🖼️ Schéma d'Architecture (À venir)
-> *Un schéma détaillé illustrant les flux chiffrés (DoT), la topologie multi-DC (CH/DE/FI) et l'interconnexion des instances sera ajouté ici dès la finalisation du déploiement de VULCAIN. La priorité est donnée à l'exactitude technique plutôt qu'à l'illustration prématurée.*
-
-> ### 🔍 Focus Évolution : Du DoT au mTLS (Réflexion en cours)
-> *   **Version 1.1 (DoT) :** Imaginez que chaque serveur possède son propre téléphone sécurisé. Quand VULCAIN a besoin de connaître l'adresse d'un autre service, il appelle AEGIS via une ligne chiffrée (DoT). Personne, pas même l'hébergeur, ne peut entendre quelle adresse est demandée.
-> *   **Réflexion Future (mTLS) :** Nous étudions l'ajout d'une "carte d'identité" numérique (certificat) pour chaque service. Avec le **mTLS**, deux services ne peuvent communiquer que s'ils se reconnaissent mutuellement via ces certificats.
->     *   *Note technique :* Si le mTLS est mis en place, le flux de données est déjà tellement sécurisé que la résolution DNS pourrait théoriquement rester en clair (car le contenu est protégé par le tunnel mTLS), bien que nous puissions choisir de cumuler les deux pour une sécurité maximale.
->     *   Cette évolution est encore à l'étude.
+> ### 🔍 Focus Évolution : Du DoT au mTLS
+> *   **Version 1.1 (DoT) :** Chaque serveur chiffre ses requêtes DNS vers AEGIS.
+> *   **Réflexion Future (mTLS) :** Authentification mutuelle par certificats pour un Zero-Trust total.
 
 ---
 
 ### 🧩 Philosophie "Lego" : Modularité & Universalité
 
-Imaginez ce projet comme un set **Lego Star Wars** complexe :
-*   🚀 **Modularité :** Chaque brique (Divinité) est fonctionnelle seule.
-*   🏗️ **Ordre de construction :** L'ordre est critique pour éviter de devoir démonter/remonter.
-*   🏗️ **Hors-Séries (Spécifique Cloud) :** Les guides de socle (Réseau, Firewall, Image) sont conçus spécifiquement pour le **Cloud Public** (OpenStack/Infomaniak).
-*   🌍 **Universalité des Divinités :** Une fois le socle en place, les guides d'installation des services sont compatibles **Cloud Public**, **VPS** et **Local** (Raspberry Pi).
+*   🏗️ **Hors-Séries (Spécifique Cloud) :** Les guides de socle (Réseau, Firewall, Image) sont conçus spécifiquement pour le **Cloud Public**.
+*   🌍 **Universalité des Divinités :** Une fois le socle en place, les guides d'installation sont compatibles **Cloud Public**, **VPS** et **Local**.
 
-**Le principe clé (v1.1) :**
-1.  **Socle Réseau (HS-02) :** Le fondamental (oublié en v1.0, réparé maintenant !).
-2.  **Porte (VULCAIN) :** Reverse Proxy et WAF.
-3.  **Socle DNS (AEGIS) :** Chiffrement des requêtes serveurs (DoT).
+**L'ordre de construction (v1.1) :**
+1.  **Socle Réseau (HS-01) :** La fondation invisible (enfin à sa place !).
+2.  **Firewall (HS-02) :** Les murs et la porte blindée.
+3.  **Image Gold (HS-03) :** Le moule système sécurisé.
 4.  **Services :** Déployés et connectés.
 
-> **Conseil :** Ne brûlez pas les étapes. Cette version 1.1 impose cet ordre logique pour garantir la stabilité.
-
----
-
-## 🛡️ Modèle de Sécurité
-
-Cette version marque un saut qualitatif en matière de sécurité :
-*   **Chiffrement Interne Systématique :** Adoption de DoT/DoH pour *tous* les flux DNS des serveurs, éliminant le risque d'écoute même sur le réseau privé de l'hébergeur.
-*   **Vers du mTLS ?** Étude active pour étendre le chiffrement et l'authentification mutuelle à l'ensemble des flux applicatifs internes via une AC privée.
-*   **Hygiène Numérique Stricte :** Abandon immédiat de tout outil client (SSH, gestion) ne respectant pas une charte de confidentialité stricte.
-*   **Redondance des Backups (ARK) :** Stratégie 3-2-1 avec copie externe chez un second hébergeur européen sur **deux sites distincts** (Allemagne & Finlande).
-*   **Zero-Trust :** Isolation stricte des instances et authentification forte via JANUS.
+> **🤡 Note de l'auteur sur le réordonnancement :**
+> *Vous avez peut-être remarqué que le "Hors-Série #1" a mis du temps à arriver alors que le "#2" était déjà là. Non, ce n'est pas une faille de sécurité, c'est une fonctionnalité expérimentale appelée **"Déploiement par la fenêtre"**.*
+> *En bon architecte passionné, j'ai commencé par peindre les volets (Firewall) et choisir les meubles (Image Gold) avant de couler les fondations (Réseau). C'est l'évidence même qui est souvent invisible... jusqu'à ce qu'on réalise qu'on ne peut pas poser les murs. 🤦‍♂️*
+> *Rassurez-vous : le réseau était déjà monté en coulisses ! Le guide HS-01 arrive juste pour expliquer comment j'ai coulé ces fondations que j'avais posées en pilote automatique.*
 
 ---
 
 ## 📚 Documentation & Guides de Déploiement
 
-Ce dépôt propose une **méthodologie durable**. Pas de scripts "magiques", mais des guides basés sur la doc officielle.
-
 ### 🗂️ Structure de la Documentation
 
-La documentation est organisée de manière modulaire dans le dossier [`docs/`](docs/) :
+La documentation est organisée dans le dossier [`docs/`](docs/) :
 
-*   📂 **[00_HORS-SERIES](docs/00_HORS-SERIES/)** : Guides transverses indispensables (Spécifiques Cloud Public).
-    *   ✅ **Disponible :** [HS-01 : Le Firewall Périmétrique "Panthéon-Gold"](docs/00_HORS-SERIES/hs-01-security-group.md)
-    *   🚧 **EN URGENCE :** [HS-02 : Constitution du Réseau Privé](docs/00_HORS-SERIES/hs-02-reseau-prive-pantheon.md) *(Note de l'auteur : Comment ai-je pu oublier le réseau dans une infra Zero-Trust ? C'est l'évidence même qui est souvent invisible. Le guide arrive en urgence, mais en attendant, vous pouvez déjà avancer sur la Gold Image !)*
-    *   ✅ **Disponible :** [HS-03 : Création de l'Image Gold Debian](docs/00_HORS-SERIES/hs-03-gold-image.md)
-*   📂 **[01_DIVINITES](docs/01_DIVINITES/)** : Guides de déploiement spécifiques à chaque service (Compatibles Cloud, VPS & Local).
-*   📂 **[99_COMMUN](docs/99_COMMUN/)** : Ressources partagées, schémas d'architecture et snippets de configuration.
+*   📂 **[00_HORS-SERIES](docs/00_HORS-SERIES/)** : Guides transverses **Spécifiques Cloud Public**.
+    *   ⏳ **A venir sous peu :** [HS-01 : Constitution du Réseau Privé](docs/00_HORS-SERIES/hs-01-reseau-prive-pantheon.md) *(La vraie fondation !)*
+    *   ✅ **Disponible :** [HS-02 : Le Firewall Périmétrique](docs/00_HORS-SERIES/hs-02-security-group.md) *(Les murs de la forteresse)*
+    *   ✅ **Disponible :** [HS-03 : Création de l'Image Gold Debian](docs/00_HORS-SERIES/hs-03-gold-image.md) *(Le moule système)*
+    
+    > **🔄 Note sur le "Chasse-Croisée" des Hors-Séries :**
+    > *Vous avez peut-être remarqué que les numéros ont bougé ? C'est normal (et assumé !).*
+    > *Initialement, le Firewall était le HS-01 et le Réseau le HS-02 (oublié). Nous nous sommes rendu compte qu'il est difficile de filtrer un réseau qui n'existe pas encore ! 🤦‍♂️*
+    > *Nous avons donc procédé à un **remaniement complet** pour respecter l'ordre logique de déploiement :*
+    > *1. Réseau (HS-01) → 2. Firewall (HS-02) → 3. Image (HS-03).*
+    > *Si vous aviez suivi l'ancienne numérotation, toutes nos excuses ! C'est désormais corrigé et cohérent.*
+
+*   📂 **[01_DIVINITES](docs/01_DIVINITES/)** : Guides de déploiement spécifiques (Compatibles Cloud, VPS & Local).
+*   📂 **[99_COMMUN](docs/99_COMMUN/)** : Ressources partagées.
 
 ---
 
 ### 🚀 Par où commencer ? (Quick Start)
 
-Le projet étant en construction, voici comment vous pouvez déjà vous impliquer :
-
-1.  **Lisez ce README** pour comprendre l'architecture v1.1 et la logique de déploiement.
-2.  **Déployez le socle de sécurité :**
-    *   📄 **[Hors-Série #1 : Le Firewall Périmétrique](docs/00_HORS-SERIES/hs-01-security-group.md)** (Prérequis absolu).
-    *   📄 **[Hors-Série #3 : L'Image Gold Debian](docs/00_HORS-SERIES/hs-03-gold-image.md)** (Nouveau ! Créez votre image de référence).
-    *   ⏳ **À venir très vite :** [Hors-Série #2 : Le Réseau Privé](docs/00_HORS-SERIES/hs-02-reseau-prive-pantheon.md) *(L'auteur répare son oubli en urgence !)*
+1.  **Lisez ce README** pour comprendre l'architecture v1.1.
+2.  **Déployez le socle de sécurité (Dans l'ordre !):**
+    *   📄 **[Hors-Série #1 : Le Réseau Privé](docs/00_HORS-SERIES/hs-01-reseau-prive-pantheon.md)** (La fondation).
+    *   📄 **[Hors-Série #2 : Le Firewall Périmétrique](docs/00_HORS-SERIES/hs-02-security-group.md)** (La sécurité).
+    *   📄 **[Hors-Série #3 : L'Image Gold Debian](docs/00_HORS-SERIES/hs-03-gold-image.md)** (Le système).
 3.  **Surveillez les prochaines publications :**
-    *   🔥 **Guide VULCAIN** (Déploiement du Proxy et WAF) – En rédaction.
-    *   🛡️ **Guide AEGIS** (Socle DNS et VPN) – À venir.
+    *   🔥 **Guide VULCAIN** – En rédaction.
+    *   🛡️ **Guide AEGIS** – À venir.
 
-> 💡 **Conseil :** **Starrez (⭐) ce dépôt** pour être notifié des mises à jour et de la publication des Hors-Séries dans les prochains jours.
-
-🛑 **AVERTISSEMENT :** Ne déployez rien en production tant que les guides ne sont pas marqués "PROD".
+> 💡 **Conseil :** **Starrez (⭐) ce dépôt** pour être notifié des mises à jour.
 
 ---
 
 ## 💰 Modèle Économique & Hébergement
 
-La v1.1 intègre un modèle de redondance professionnelle renforcé.
-
-*   **Hébergeur Principal :** Infomaniak (**Suisse**). Pour les instances de production.
-*   **Hébergeur Secondaire (Stockage Backup) :** Hetzner. Réplication des backups froids sur **deux datacenters distincts** : **Allemagne** et **Finlande**. Cela assure une redondance géographique sur **3 Datacenters distincts** (1x Suisse, 1x Allemagne, 1x Finlande).
-*   **Sécurité des Données (ARK) :** Toutes les sauvegardes sont **chiffrées côté client (AES-256)** via Restic *avant* leur envoi. Ni Infomaniak ni Hetzner ne peuvent accéder au contenu de vos données.
+*   **Hébergeur Principal :** Infomaniak (**Suisse**).
+*   **Hébergeur Secondaire (Backup) :** Hetzner (**Allemagne** & **Finlande**).
+*   **Redondance :** 3 Datacenters distincts. Backups chiffrés (AES-256).
 *   **Coût Cible :** 200€~300€/mois.
-    *   Ce budget couvre l'ensemble des 12 services en production, avec une allocation de ressources confortable et la réplication des sauvegardes sur ces trois datacenters distincts.
 
-*   **Soutien au projet :** Si ce projet vous est utile, vous pouvez soutenir son développement via les liens d'affiliation ci-dessous (sans surcoût pour vous) :
-    *   ☁️ **[Infomaniak Public Cloud](https://www.infomaniak.com/fr/hebergement/public-cloud?utm_term=68ceeeb369ce1)** – Pour le socle principal.
-    *   🖥️ **[Infomaniak VPS](https://www.infomaniak.com/fr/hebergement/vps-cloud?utm_term=68ceeeb369ce1)** – Pour les instances légères.
-    *   📧 **[kSuite (incluant kDrive & Euria)](https://www.infomaniak.com/fr/ksuite?utm_term=68ceeeb369ce1)** – Pour la suite collaborative.
-    *   ℹ️ **[Site Officiel Infomaniak (Lien non affilié)](https://infomaniak.com/fr)**
-
-> *Un clin d'œil sincère à **Infomaniak** : ce projet n'aurait jamais vu le jour sans un hébergeur capable de cocher simultanément les cases "Souveraineté Suisse", "Écologie réelle" et "Prix accessibles". Merci de rendre la liberté numérique économiquement viable.*
+*   **Soutien au projet :**
+    *   ☁️ **[Infomaniak Public Cloud](https://www.infomaniak.com/fr/hebergement/public-cloud?utm_term=68ceeeb369ce1)**
+    *   🖥️ **[Infomaniak VPS](https://www.infomaniak.com/fr/hebergement/vps-cloud?utm_term=68ceeeb369ce1)**
+    *   📧 **[kSuite (incluant kDrive & Euria)](https://www.infomaniak.com/fr/ksuite?utm_term=68ceeeb369ce1)**
+    *   ℹ️ **[Site Officiel Infomaniak](https://infomaniak.com/fr)**
 
 ---
 
 ## 🚀 Roadmap (v1.1 - Construction)
 
-- [x] **Phase 0 : Conception & Outils** – Mise en place de l'environnement de rédaction (Debian, VSCodium) et finalisation des specs VULCAIN.
-- [x] **Publication Hors-Série #1** – Guide du Firewall Périmétrique (Gold Security Group).
-- [ ] **Publication Hors-Série #2 (Urgent)** – Guide du Réseau Privé. *(Priorité Immédiate)*
-- [x] **Publication Hors-Série #3** – Guide de l'Image Gold Debian.
-- [ ] **Phase 1 : Porte d'Entrée (VULCAIN)** – Déploiement du Proxy et du WAF.
-- [ ] **Phase 2 : Socle DNS (AEGIS)** – Déploiement de l'instance avec DoT/DoH natif.
-- [ ] **Phase 3 : Observabilité (ARGUS)** – Mise en place du monitoring centralisé.
-- [ ] **Phase 4 : Identité & Données (JANUS, MNÉMOSYNE, ARK)** – Déploiement du SSO, du Cloud et configuration de la redondance des backups (Infomaniak + Hetzner DE/FI).
-- [ ] **Phase 5 : Services Utilisateurs** – VERITAS, DIANE, HÉPHAÏSTOS.
-- [ ] **Phase 6 : Avancé** – HERMÈS, MIDAS, PROMÉTHÉE.
+- [x] **Phase 0 : Conception & Outils**
+- [x] **Réorganisation des Hors-Séries** – Correction de l'ordre logique (Réseau → Firewall → Image).
+- [x] **Publication HS-02 & HS-03** – Firewall et Image Gold.
+- [ ] **Publication HS-01** – Réseau Privé (La fondation manquante).
+- [ ] **Phase 1 : VULCAIN** – Déploiement du Proxy.
+- [ ] **Phase 2 : AEGIS** – Déploiement du socle DNS.
+- [ ] **Phase 3 : ARK & Données** – Backups multi-DC.
+- [ ] **Réflexion mTLS** – Étude d'implémentation.
 
 ---
 
 ## 🤝 Contribuer & Licence
 
-Projet éducatif en construction ouverte.
-
-**Comment contribuer ?**
-*   🐛 **Signaler un bug** ou une erreur dans un guide (ouvrez une "Issue").
-*   🌍 **Traduire** un guide dans votre langue maternelle.
-*   📝 **Partager** votre retour d'expérience (REX) après avoir déployé une brique.
-*   💡 **Proposer** une optimisation de sécurité ou de performance.
-
 **Licences :**
-*   **Contenu (Guides) :** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) - Libre partage et adaptation avec citation.
-*   **Logiciels cités :** Chaque divinité respecte la licence de son logiciel constitutif (majoritairement MIT, Apache 2.0, AGPL, GPL).
+*   **Contenu (Guides) :** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+*   **Logiciels cités :** Chaque divinité respecte la licence de son logiciel constitutif.
 
 ---
 
-> *"La souveraineté numérique n'est pas un produit que l'on achète, c'est une architecture que l'on bâtit. C'est le refus de la dépendance et la conquête quotidienne de sa propre liberté."*
+> *"La souveraineté numérique n'est pas un produit que l'on achète, c'est une architecture que l'on bâtit. Parfois, il faut déplacer les briques pour que l'édifice tienne debout."*
