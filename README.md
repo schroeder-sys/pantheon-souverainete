@@ -15,7 +15,7 @@
 
 ## 📋 Table des Matières
 
-1.  [Un mot sur le silence](#-un-mot-sur-le-silence-4-mois)
+1.  [Un mot sur le silence](#-un-mot-sur-le-silence-2-mois)
 2.  [Avertissements & Méthodologie](#-avertissements--méthodologie)
 3.  [Architecture (12 Divinités)](#-architecture-les-12-divinités)
 4.  [Documentation & Guides](#-documentation--guides-de-déploiement)
@@ -88,7 +88,7 @@ Je ne suis **pas un professionnel de l'IT** diplômé. Ce projet est le fruit d'
 Projet éducatif et personnel. Les guides sont fournis **« tels quels » (as is)**, sans garantie explicite ou implicite.
 
 *   **Absence de Garantie d'Exactitude :** L'auteur ne garantit pas l'absence d'erreurs ou d'incompatibilités futures.
-*   **Sécurité & Failles :** Aucune architecture n'est « exempte de failles ». Les guides reflètent le meilleur de nos connaissances à leur date de rédaction.
+*   **Sécurité & Failles :** Aucune architecture n'est « exempte de failles ». Les guides reflètent le meilleur de mes connaissances à leur date de rédaction.
 *   **Responsabilité de Déploiement :** Il est impératif de tester toute procédure dans un **environnement isolé** avant production. L'administrateur assume l'entière responsabilité de la sécurité de ses données.
 
 ---
@@ -152,16 +152,16 @@ HS-01 (Réseau) → HS-02 (Firewall) → HS-03 (Image Gold)
 ```
 
 > **🤡 Note de l'auteur sur la V2 :**
-> *Vous vous demandez pourquoi on repart de zéro après avoir publié des guides ? Bonne question.*
+> *Vous vous demandez pourquoi je repars de zéro après avoir publié des guides ? Bonne question.*
 > *En bon architecte passionné, j'ai appris en faisant. La V1 avait des fondations bancales, j'aurais pu bricoler des correctifs… j'ai choisi de tout reprendre proprement.*
 > *C'est comme découvrir qu'on a construit sa maison sur du sable : soit on consolide en urgence, soit on coule de vraies fondations et on recommence. J'ai choisi l'option 2.*
-> *Rassurez-vous : la V2 sera cohérente, complète et dans le bon ordre. Promis. (Cette fois.)*
+> *Rassurez-vous : la V2 sera cohérente, complète et dans le bon ordre. Promis. (Cette fois... enfin, j'espère 🙃)*
 
 ---
 
 ## 🤝 Soutien au Projet (Liens d'Affiliation)
 
-Ce projet est développé sur **mon temps libre**, sans financement extérieur. Si vous souhaitez soutenir la démarche sans coût supplémentaire pour vous, utilisez les liens d'affiliation ci-dessous pour vos souscriptions Infomaniak.
+Ce projet est développé sur **mon temps libre**, sans financement extérieur. Si vous souhaitez soutenir la démarche sans coût supplémentaire pour vous, utilisez les liens d'affiliation ci-dessous pour vos souscriptions Infomaniak (hébergeur Suisse que je **recommande** tant pour ses tarifs que sa compatibilité avec le projet).
 
 | Service | Lien |
 |---------|------|
@@ -191,7 +191,7 @@ Ce projet est développé sur **mon temps libre**, sans financement extérieur. 
 
 ### Environnement de Test Recommandé
 
-**☁️ Infomaniak Public Cloud — 300€ de crédit offerts sur 3 mois**
+**☁️ Infomaniak Public Cloud — 300€ de crédit OFFERTS sur 3 mois**
 
 Idéal pour tester l'infrastructure sans toucher au portefeuille. Le crédit couvre largement un déploiement complet de test.
 
@@ -204,7 +204,7 @@ Idéal pour tester l'infrastructure sans toucher au portefeuille. Le crédit cou
 *   🖥️ **[VPS Lite](https://www.infomaniak.com/fr/hebergement/vps-lite?utm_term=6acca8df963ee)** — Pour petits budgets et tests
 *   💾 **[NAS Synology](https://www.infomaniak.com/goto/fr/hosting.synology?utm_term=6acca8df963ee)** — Alternative clé en main
 
-> **💡 Astuce :** Le coût cible de 200-300€/mois correspond à la **structure TOTALE en production**. Vous pouvez commencer avec **un seul service métier**, ce qui divise la facture par 6.
+> **💡 Astuce :** Le coût cible de 200-300€/mois correspond à la **structure TOTALE en production**. Vous pouvez commencer avec **un seul service métier**, ce qui divise la facture par 6 (soit environ 33€/mois).
 
 ### Contacts
 
@@ -242,7 +242,7 @@ Le projet est **100% en français** pour l'instant.
 ### ⏳ À Venir
 - [ ] **ARGUS** — Monitoring
 - [ ] **ARK** — Backups multi-DC
-- [ ] **DIANE, VERITAS, HÉPHAÏSTOS, MNÉMOSYNE, PROMÉTHÉE** — Guides à mettre à jour
+- [ ] **DIANE, VERITAS, HÉPHAÏSTOS, MNÉMOSYNE, PROMÉTHÉE** — Guides à produire
 - [ ] **HERMÈS (Email)** — En attente
 - [ ] **MIDAS (Finances)** — En attente
 
@@ -262,6 +262,8 @@ Le projet est **100% en français** pour l'instant.
 
 ---
 
-**Auteur :** Christopher Schroëder — Auto-entrepreneur (Schroeder-Sys)  
+**Auteur :** Christopher Schroëder — Auto-entrepreneur (Schroeder-Sys)
+**Assistance IA :** Euria et Qwen3.5 (doc, brainstorming et réflexion), Kimi-K2.6 (code et scripting)
 **Contact pro :** [schroeder-sys.fr](https://schroeder-sys.fr)  
 **Dernière mise à jour :** 16 octobre 2026 — Version 2.0.0-alpha
+> 🤖 Petite note sur l'IA : j'utilise Euria dans le cadre de mon abonnement [myKsuite+](https://www.infomaniak.com/fr/ksuite/myksuite?utm_term=6acca8df963ee), Qwen & Kimi dans le cadre de mon abonnement [AI Tools](https://www.infomaniak.com/fr/hebergement/llm-api?utm_term=6acca8df963ee) disponibles chez Infomaniak
